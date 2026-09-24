@@ -1,0 +1,27 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Gazebo Sim",
+      "type": "shell",
+      "command": "source install/setup.bash && ros2 launch annin_ar4_gazebo gazebo.launch.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start MoveIt",
+      "type": "shell",
+      "command": "source install/setup.bash && ros2 launch annin_ar4_moveit_config moveit.launch.py use_sim_time:=true include_gripper:=True",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Sim with MoveIt",
+      "dependsOn": [
+        "Start Gazebo Sim",
+        "Start MoveIt",
+      ],
+      "problemMatcher": []
+    },
+  ]
+}
